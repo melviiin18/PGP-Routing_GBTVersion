@@ -70,7 +70,7 @@ Ext.application({
         });
 		
 		vHeight=Ext.getBody().getViewSize().height
-		alert(vHeight);
+		
 		Ext.create('Ext.container.Viewport', {
 		    layout: 'border',
 		    items: [
