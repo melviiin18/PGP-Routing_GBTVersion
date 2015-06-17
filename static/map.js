@@ -69,6 +69,8 @@ Ext.application({
 			}
         });
 		
+		vHeight=Ext.getBody().getViewSize().height
+		alert(vHeight);
 		Ext.create('Ext.container.Viewport', {
 		    layout: 'border',
 		    items: [
@@ -85,9 +87,10 @@ Ext.application({
 				xtype: 'routing',
 		        	region: 'east',
 		        	title: 'Routing',
-		        	width: 500,
+		        	width: 500,					
 					split: true,
-					mapContainer: mappanel,
+					mapContainer: mappanel,	
+					vHeight:vHeight,					
 					hidden: false
 				},	
 				

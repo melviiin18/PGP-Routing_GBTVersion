@@ -19,13 +19,12 @@ var store = new Ext.data.ArrayStore({
 Ext.define('routing',{
 	extend: 'Ext.panel.Panel',	
 	title: 'Routing',
-	
 	alias: 'widget.routing',
 	height: '100%',
 	width: 300,		
-	
+	vHeight:'',
 	display: function(route,index){
-		
+				
 				console.log(route.routes[index]);
 				
 					var line = new OpenLayers.Geometry.LineString();
@@ -63,7 +62,10 @@ Ext.define('routing',{
 						}
 						
 						
+						//steps.html=str;
+						
 						steps.update(str);
+						
 						
 						
 					var style = { 
@@ -100,7 +102,7 @@ Ext.define('routing',{
 	initComponent: function(){
 		
 		var me = this;
-		
+		var dHeight=this.vHeight-285;		
 		Ext.apply(me,{
 			
 					items: 	[{
@@ -143,6 +145,9 @@ Ext.define('routing',{
 								{
 									text: 'Go',
 									handler: function(){
+										
+										
+										console.log( 'size----',Ext.getBody().getViewSize().height);		
 										
 										var x = me.mapContainer.map.getLayersByName('vectorLayer');
 										if(x.length>0)
@@ -250,11 +255,14 @@ Ext.define('routing',{
 					},
 					{
 						xtype:'panel',
-						title:'Directions',
-						border:false,
+						title:'Directions',						
 						itemId:'panelDirections',
-						flex:2,
-						layout:'fit'
+						//autoScroll:true,
+						height:dHeight,
+						overflowY:'scroll',						
+						flex:1,
+						layout:'fit',						
+						border:true
 						
 					}
 					
