@@ -43,7 +43,7 @@ Ext.define('routing',{
 					var Origin
 					console.log(route.routes[index].overview_path);
 					for (var i in route.routes[index].overview_path) {
-							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i].F,route.routes[index].overview_path[i].A).transform("EPSG:4326","EPSG:900913");																												
+							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i].K,route.routes[index].overview_path[i].G).transform("EPSG:4326","EPSG:900913");																												
 							line.addPoint(point);
 							//console.log(point);																													
 						  }
