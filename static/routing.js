@@ -103,7 +103,7 @@ Ext.define('routing',{
 	initComponent: function(){
 		
 		var me = this;
-		var dHeight=this.vHeight-285;		
+		var dHeight=this.vHeight-325;		
 		Ext.apply(me,{
 			
 					items: 	[{

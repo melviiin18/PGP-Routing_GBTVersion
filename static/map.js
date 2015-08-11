@@ -69,7 +69,7 @@ Ext.application({
 			}
         });
 		
-		vHeight=Ext.getBody().getViewSize().height - 40	
+		vHeight=Ext.getBody().getViewSize().height	
 		console.log(Ext.getBody())
 		Ext.create('Ext.container.Viewport', {
 		    layout: 'border',
