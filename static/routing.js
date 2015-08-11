@@ -18,7 +18,7 @@ var store = new Ext.data.ArrayStore({
 	
 Ext.define('routing',{
 	extend: 'Ext.panel.Panel',	
-	title: 'Routing',
+	title: 'Routing',	
 	alias: 'widget.routing',
 	height: '100%',
 	width: 300,		
@@ -38,11 +38,12 @@ Ext.define('routing',{
 					{
 						
 						x[0].destroy();
-					}
+					}					
 					
 					var Origin
 					console.log(route.routes[index].overview_path);
 					for (var i in route.routes[index].overview_path) {
+							console.log(i);
 							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i].K,route.routes[index].overview_path[i].G).transform("EPSG:4326","EPSG:900913");																												
 							line.addPoint(point);
 							//console.log(point);																													
@@ -260,7 +261,7 @@ Ext.define('routing',{
 						//autoScroll:true,
 						height:dHeight,
 						overflowY:'scroll',						
-						flex:1,
+						//flex:1,
 						layout:'fit',						
 						border:true
 						
