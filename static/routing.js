@@ -25,7 +25,7 @@ Ext.define('routing',{
 	vHeight:'',
 	display: function(route,index){
 				
-				console.log(route.routes[index]);
+				//console.log(route.routes[index]);
 				
 					var line = new OpenLayers.Geometry.LineString();
 					var vectorLayer = new OpenLayers.Layer.Vector("vectorLayer");
@@ -41,10 +41,20 @@ Ext.define('routing',{
 					}					
 					
 					var Origin
-					console.log(route.routes[index].overview_path);
+					//console.log(route.routes[index].overview_path);
 					for (var i in route.routes[index].overview_path) {
-							console.log(i);
-							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i].K,route.routes[index].overview_path[i].G).transform("EPSG:4326","EPSG:900913");																												
+							
+							
+							//Get the key of the object by index. This will solve Google'x ever changing key name for x and y. Unless x and y switches position (we can also solve that).
+							var keyY= Object.keys(route.routes[index].overview_path[i])[0]; //this will return a letter corresponding to Y coordinate
+							var keyX = Object.keys(route.routes[index].overview_path[i])[1];//this will return a letter corresponding to X coordinate
+							
+							
+												
+							
+							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i][keyX],route.routes[index].overview_path[i][keyY]).transform("EPSG:4326","EPSG:900913");
+			
+							
 							line.addPoint(point);
 							//console.log(point);																													
 						  }
@@ -148,7 +158,7 @@ Ext.define('routing',{
 									handler: function(){
 										
 										
-										console.log( 'size----',Ext.getBody().getViewSize().height);		
+										//console.log( 'size----',Ext.getBody().getViewSize().height);		
 										
 										var x = me.mapContainer.map.getLayersByName('vectorLayer');
 										if(x.length>0)
@@ -181,9 +191,6 @@ Ext.define('routing',{
 												 
 												 var line = new OpenLayers.Geometry.LineString();
 												 var vectorLayer = new OpenLayers.Layer.Vector("vectorLayer");
-											
-												
-												
 												
 												var myarray =[];												
 												for (var i in result.routes)
@@ -275,6 +282,44 @@ Ext.define('routing',{
 		}			  
 		)
 		
+		//var inout = this.up('panel').down('#txtOrigin');	
+		//console.log(this.down('panel'));
+		
+		//autocomplete = new google.maps.places.Autocomplete(input, options);
+		
 		this.callParent();
-	}	
+		
+		/* var input=document.getElementById('searchBox');
+		console.log(input);
+		// input = this.down('#txtOrigin');
+	//www = Ext.getDom('textfield-1013-inputEl');
+	//	console.log("xxx",www);
+		
+		var defaultBounds = new google.maps.LatLngBounds(
+			  new google.maps.LatLng(12, 121),
+			  new google.maps.LatLng(14, 124));
+			  var options = {
+			 bounds: defaultBounds,
+			  types: ['establishment']
+			};
+	autocomplete = new google.maps.places.Autocomplete(input,options); */
+	},
+	listeners:
+	{
+			render:function()
+			{
+				
+				var tempOrigin = this.down('#txtOrigin');	
+				var tempDestination = this.down('#txtDestination');			
+				
+				var textboxOrigin = Ext.getDom(tempOrigin.id + '-inputEl');
+				var textboxDestination = Ext.getDom(tempDestination.id + '-inputEl');					
+				
+			 
+				autocompleteOrigin = new google.maps.places.Autocomplete(textboxOrigin); 
+				autocompleteDestination = new google.maps.places.Autocomplete(textboxDestination); 
+			}
+	}
+	
+	
 });			
