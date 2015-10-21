@@ -52,7 +52,7 @@ Ext.define('routing',{
 							
 												
 							
-							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i][keyX],route.routes[index].overview_path[i][keyY]).transform("EPSG:4326","EPSG:900913");
+							var point = new OpenLayers.Geometry.Point(route.routes[index].overview_path[i][keyX](),route.routes[index].overview_path[i][keyY]()).transform("EPSG:4326","EPSG:900913");
 			
 							
 							line.addPoint(point);
@@ -113,13 +113,14 @@ Ext.define('routing',{
 	initComponent: function(){
 		
 		var me = this;
-		var dHeight=this.vHeight-325;		
+		var dHeight=this.vHeight-315;		
 		Ext.apply(me,{
 			
 					items: 	[{
 							xtype:'panel',
+							//html:'<img STYLE="position:absolute; TOP:70px; LEFT:110px; HEIGHT:20px; WIDTH:144px;" src="./icons/powered_by_google_on_white.png" class="info_image" ></img>',
 							name:'xcxx',
-							height:135,
+							height:150,
 							padding: 10,
 							border: false,
 							layout: {
@@ -156,7 +157,7 @@ Ext.define('routing',{
 								{
 									text: 'Go',
 									handler: function(){
-										
+											
 										
 										//console.log( 'size----',Ext.getBody().getViewSize().height);		
 										
